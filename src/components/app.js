@@ -16,33 +16,13 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
-  constructor() {
-    super();
-
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
-  }
-
-  getPortfolioItems() {
-    axios
-      .get("https://claytonsmith.devcamp.space/portfolio/portfolio_items")
-      .then(response => {
-        console.log("response data", response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
   render() {
-    this.getPortfolioItems();
     return (
-      <div className='app'>
-
+      <div className="app">
         <Router>
           <div>
-
             <h1>Clayton Smith's Portfolio</h1>
-
-            <div>{moment().format('MMMM Do YYYY, h:mm a')}</div>
+            <div>{moment().format("MMMM Do YYYY, h:mm:ss a")}</div>
             <NavigationContainer />
 
             <Switch>
@@ -50,12 +30,15 @@ export default class App extends Component {
               <Route path="/about-me" component={About} />
               <Route path="/contact" component={Contact} />
               <Route path="/blog" component={Blog} />
-              <Route exact path="/portfolio/:slug" component={PortfolioDetail} />
+              <Route
+                exact
+                path="/portfolio/:slug"
+                component={PortfolioDetail}
+              />
               <Route component={NoMatch} />
             </Switch>
           </div>
         </Router>
-
       </div>
     );
   }
