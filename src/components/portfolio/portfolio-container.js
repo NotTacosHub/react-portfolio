@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import PortfolioItem from "./portfolio-item";
 
@@ -28,6 +29,19 @@ export default class PortfolioContainer extends Component {
         })
     }
 
+    getPortfolioItems() {
+        axios
+            .get("https://claytonsmith.devcamp.space/portfolio/portfolio_items")
+            .then(response => {
+                this.setState({
+                    data: response.data.portfolio_items
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
     portfolioItems() {
         return this.state.data.map(item => {
             return <PortfolioItem title={item.title} url={"google.com"} />;
@@ -38,6 +52,10 @@ export default class PortfolioContainer extends Component {
         this.setState({
             pageTitle: "Something Else"
         });
+    }
+
+    componentDidMount() {
+        this.getPortfolioItems();
     }
 
     render() {
