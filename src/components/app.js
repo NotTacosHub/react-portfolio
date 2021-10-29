@@ -15,6 +15,7 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth"
 import NoMatch from "./pages/no-match";
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +87,7 @@ export default class App extends Component {
           <div>
             <NavigationContainer
               loggedInStatus={this.state.loggedInStatus}
-              handleSUccessfulLogout={this.handleSuccessfulLogout}
+              handleSuccessfulLogout={this.handleSuccessfulLogout}
             />
 
             <h2>{this.state.loggedInStatus}</h2>
