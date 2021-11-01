@@ -20,6 +20,18 @@ export default class PortfolioForm extends Component {
 
     }
 
+    buildForm() {
+        let formData = new FormData();
+
+        formData.append("portfolio_item[name]", this.state.name);
+        formData.append("portfolio_item[description]", this.state.description);
+        formData.append("portfolio_item[url]", this.state.url);
+        formData.append("portfolio_item[category]", this.state.category);
+        formData.append("portfolio_item[position]", this.state.position);
+
+        return formData;
+    }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -27,7 +39,7 @@ export default class PortfolioForm extends Component {
     }
 
     handleSubmit(event) {
-        console.log("event", event);
+        this.buildForm();
         event.preventDefault();
     }
 
